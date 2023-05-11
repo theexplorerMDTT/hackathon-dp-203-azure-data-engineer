@@ -169,6 +169,11 @@ Get-ChildItem "./data/*.csv" -File | Foreach-Object {
     Set-AzStorageBlobContent -File $_.FullName -Container "files" -Blob $blobPath -Context $storageContext
 }
 
+# Creating HTTP linked service
+Write-Host "Creating HTTP linked service..."
+$linkedServiceBody = Get-Content -Raw -Path .\setup.json | ConvertFrom-Json
+New-AzDataFactoryV2LinkedService -DataFactoryName DataFactoryMai -ResourceGroupName $resourceGroupName -Definition $linkedServiceBody.linkedServices.HTTPLinkedServiceName
+
 
 # Import notebooks
 write-host "Importing notebooks..."
