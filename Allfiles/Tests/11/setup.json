@@ -37,8 +37,15 @@
         "metadata": {
           "description": "Suffix added to all resource name to make them unique."
         }
-      }
-    },
+      },
+
+      "name": "LinkedServiceHTTP",
+      "properties": {
+        "type": "HttpServer",
+        "typeProperties": {
+          "url": "https://data.nysed.gov/files/enrollment/21-22/enrollment_2022.zip"
+          }
+        },
     "variables": {
       "location": "[resourceGroup().location]",
       "defaultDataLakeStorageFilesystemName": "files",
@@ -230,4 +237,3 @@
       }
     }
   }
-  
